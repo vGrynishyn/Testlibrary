@@ -17,6 +17,8 @@ public class HomePage extends BasePage{
         if(!poster.isDisplayed()){
             LogInformation.error(String.format("Web page %s has not been loaded.", URL));
         }
+        else
+            LogInformation.error(String.format("Web page %s loaded successfully.", URL));
         return this;
     }
 }
