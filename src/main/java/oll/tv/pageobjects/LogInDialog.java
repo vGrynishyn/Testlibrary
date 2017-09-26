@@ -2,7 +2,6 @@ package oll.tv.pageobjects;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 public class LogInDialog extends BasePage{
@@ -25,7 +24,7 @@ public class LogInDialog extends BasePage{
 
     public LogInDialog logIn(String user, String pass){
         new HomePage().openHomePage(URL)
-                .clickLogIn();
+                .openLoginDialog();
         userName.sendKeys(user);
         password.sendKeys(pass+ Keys.ENTER);
         return this;

@@ -10,6 +10,10 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//*[@class='scm-poster']")
     @CacheLookup
     private WebElement poster;
+    @FindBy(className = "header-bottom no-border-bottom")
+    @CacheLookup
+    private WebElement headerBottom;
+
 
     public HomePage openHomePage(String URL){
         Browser.openWebPage(URL);
