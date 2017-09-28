@@ -1,9 +1,11 @@
 package oll.tv.pageobjects;
 
 import oll.tv.utils.Browser;
+import oll.tv.utils.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,10 @@ public class IPTVPage extends BasePage {
     @FindBy(xpath = "//*[@class='pp-content']//*[@class='pp-but-big']")
     @CacheLookup
     private WebElement buySubscriptionButton;
+
+    public IPTVPage(){
+        PageFactory.initElements(Driver.getWebDriver(), this);
+    }
 
     public IPTVPage openTVChannelPage(String URL){
         Browser.openWebPage(URL);

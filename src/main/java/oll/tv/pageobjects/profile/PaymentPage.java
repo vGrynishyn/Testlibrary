@@ -1,8 +1,10 @@
 package oll.tv.pageobjects.profile;
 
 import oll.tv.pageobjects.BasePage;
+import oll.tv.utils.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class PaymentPage extends BasePage {
 
@@ -16,6 +18,10 @@ public class PaymentPage extends BasePage {
     private WebElement submitPayment;
     @FindBy(xpath = "//*[@class='logo-pay-carta']/../../td[@class='pay-section']//*[@class='under-summ-input-txt b-error-txt error-txt']")
     private WebElement errorHint;
+
+    public PaymentPage(){
+        PageFactory.initElements(Driver.getWebDriver(), this);
+    }
 
     public void setPayment(String sum){
         buttonRefill.click();

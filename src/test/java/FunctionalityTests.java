@@ -1,5 +1,6 @@
 
 import oll.tv.pageobjects.*;
+import oll.tv.pageobjects.profile.MyProfilePage;
 import oll.tv.utils.Browser;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
@@ -15,12 +16,6 @@ public class FunctionalityTests extends AbstractTest {
 
     private Collection<String> ExpectedItemNames =  Arrays.asList("Телеканалы", "Фильмы","Премиум Кино","Сериалы","Программы","Детям","Футбол LIVE","Футбол Лучшее","Музыка","Радио");
 
-//    @BeforeMethod
-//    public void before(){
-//        Browser.openWebPage(URL);
-//    }
-
-
     @AfterMethod
     public void after(){
         Browser.closeBrowser();
@@ -32,7 +27,7 @@ public class FunctionalityTests extends AbstractTest {
     @Test
     public void openHomePageTest(){
         boolean isPosterExists = new HomePage().openHomePage(URL)
-                .isPosterExists();
+                .isLogInButtonExists();
         softAssert.assertTrue(isPosterExists, "Verification home page load successfully.");
     }
 
@@ -58,6 +53,16 @@ public class FunctionalityTests extends AbstractTest {
         boolean isLoggedIn = new LogInDialog().logIn(USER_NAME, PASS)
                 .isLoggedIn();
         softAssert.assertTrue(isLoggedIn);
+    }
+
+    /*
+    [TestLink] OL001-3:Log Of test
+    */
+    @Test
+    public void logOfTest(){
+        new LogInDialog().logIn(USER_NAME, PASS);
+        new MyProfilePage().logOut();
+        softAssert.assertTrue(new HomePage().isLogInButtonExists(), "Verify logOut success.");
     }
 
     /*

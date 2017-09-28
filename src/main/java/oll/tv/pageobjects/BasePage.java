@@ -37,7 +37,11 @@ public abstract class BasePage {
 
 
     public BasePage(){
-        PageFactory.initElements(Driver.getWebDriver(), this);
+       PageFactory.initElements(Driver.getWebDriver(), this);
+    }
+
+    public boolean isLogInButtonExists(){
+        return logIn.isDisplayed();
     }
 
     public List<WebElement> getHeaderLinks(){

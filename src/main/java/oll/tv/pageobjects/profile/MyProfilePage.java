@@ -1,15 +1,21 @@
 package oll.tv.pageobjects.profile;
 
 import oll.tv.pageobjects.BasePage;
+import oll.tv.utils.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class MyProfilePage extends BasePage {
 
     @FindBy(className = "logged")
     private WebElement myOllTV;
+    @FindBy(xpath = "//*/a[@href=\"/auth/logout\"]")
+    private WebElement logOut;
     @FindBy(xpath = "//*[@class='right centered-right']//*/a[@href='/account/subs']")
     private WebElement subscription;
+    @FindBy(xpath = "//*[@class='right centered-right']//*/a[@href='/account/devices']")
+    private WebElement myDevices;
     @FindBy(xpath = "//*[@class='b-purchase']//*/a[contains(@href,'/pack/')]/span")
     private WebElement purchasedTariff;
     @FindBy(className = "profile-page b-profile-page ")       // //*[@class='profile-page b-profile-page ']
@@ -23,14 +29,25 @@ public class MyProfilePage extends BasePage {
     @FindBy(xpath = "//*[@class='logo-pay-carta']/../../td[@class='pay-section']//*[@class='under-summ-input-txt b-error-txt error-txt']")
     private WebElement errorHint;
 
+    public MyProfilePage(){
+        PageFactory.initElements(Driver.getWebDriver(), this);
+    }
 
     public MyProfilePage goToProfile(){
         myOllTV.click();
         return this;
     }
 
+    public MyProfilePage goToMyDevices(){
+        myDevices.click();
+        return this;
+    }
+
+    public void logOut(){
+        logOut.click();
+    }
+
     public String getSubscribtionType(){
-        //myOllTV.click();
         subscription.click();
         String subscription = purchasedTariff.getText();
         purchasedTariff.click();
@@ -53,10 +70,4 @@ public class MyProfilePage extends BasePage {
         return errorHint.getCssValue("color");
     }
 
-    @FindBy(className = "c-payment-card__sum-text")
-    private WebElement paymentSum;
-
-    public String getPaymentSum(){
-        return paymentSum.getText();
-    }
 }

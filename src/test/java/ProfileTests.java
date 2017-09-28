@@ -1,15 +1,10 @@
 import oll.tv.pageobjects.LogInDialog;
-import oll.tv.pageobjects.profile.MyProfilePage;
 import oll.tv.pageobjects.TVChannelsPage;
+import oll.tv.pageobjects.profile.MyProfilePage;
 import oll.tv.utils.Browser;
 import oll.tv.utils.LogInformation;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-import org.testng.xml.dom.ParentSetter;
 
 public class ProfileTests extends AbstractTest{
 
@@ -23,6 +18,7 @@ public class ProfileTests extends AbstractTest{
 
     @AfterMethod
     public void after(){
+        softAssert.assertAll();
         Browser.closeBrowser();
     }
 
@@ -36,13 +32,12 @@ public class ProfileTests extends AbstractTest{
         String tariffName = new MyProfilePage()
                                     .goToProfile()
                                     .getSubscribtionType();
-        int numOfTariffchsnnels = new TVChannelsPage()
+        int numOfTariffChsnnels = new TVChannelsPage()
                                         .getAmountOfTariffchsnnels()
                                         .size();
         softAssert.assertEquals(tariffName, TARIFF_NAME, "Verify expected teriff name.");
-        softAssert.assertEquals(numOfTariffchsnnels, 48, "Verify expected number of chsnnels.");
+        softAssert.assertEquals(numOfTariffChsnnels, 48, "Verify expected number of chsnnels.");
         LogInformation.info("//------------Finished checkAmountOfchsnnelsInProfileAndTariffsTest");
-        softAssert.assertAll();
     }
 
     /*
@@ -59,7 +54,6 @@ public class ProfileTests extends AbstractTest{
         String hintColor = new MyProfilePage().getErrorMessageHintColor();
         softAssert.assertEquals(hintMessage, AMOUNT_MORE, "Verify expected error message if payment sum more than 2500");
         softAssert.assertEquals(hintColor , HINT_COLOR , "Verify hint color");
-        softAssert.assertAll();
     }
 
     /*
@@ -76,7 +70,6 @@ public class ProfileTests extends AbstractTest{
         String hintColor = new MyProfilePage().getErrorMessageHintColor();
         softAssert.assertEquals(hintMessage, AMOUNT_LESS, "Verify expected error message if payment sum less than 20");
         softAssert.assertEquals(hintColor , HINT_COLOR , "Verify hint color");
-        softAssert.assertAll();
     }
 
 }

@@ -1,11 +1,10 @@
 import oll.tv.pageobjects.LogInDialog;
+//import CreditCardPaymentPage;
 import oll.tv.pageobjects.profile.CreditCardPaymentPage;
+import oll.tv.pageobjects.profile.MyDevicesPage;
 import oll.tv.pageobjects.profile.MyProfilePage;
 import oll.tv.utils.Browser;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 public class PaymentTest extends AbstractTest{
@@ -15,6 +14,7 @@ public class PaymentTest extends AbstractTest{
     @AfterMethod
     public void after(){
         Browser.closeBrowser();
+        softAssert.assertAll();
     }
 
     /*
@@ -26,9 +26,10 @@ public class PaymentTest extends AbstractTest{
         new LogInDialog().logIn(USER_NAME, PASS);
         new MyProfilePage()
                 .goToProfile()
+                .goToProfile()
                 .setPayment(sumPayment);
         String setSum = new CreditCardPaymentPage().getPaymentSum();
-        softAssert.assertEquals(setSum, sumPayment, "Verify ");
+        softAssert.assertEquals(setSum, sumPayment, "Verify payment sum");
     }
 
 }

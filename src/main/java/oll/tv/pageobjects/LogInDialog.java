@@ -1,8 +1,10 @@
 package oll.tv.pageobjects;
 
+import oll.tv.utils.Driver;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LogInDialog extends BasePage{
 
@@ -17,6 +19,10 @@ public class LogInDialog extends BasePage{
     @FindBy(className = "logged")
     private WebElement myOllTV;
     private static final String URL = "http://oll.tv";
+
+    public LogInDialog(){
+        PageFactory.initElements(Driver.getWebDriver(), this);
+    }
 
     public boolean isLoginDialogDisplayed(){
         return loginDialog.isDisplayed();
